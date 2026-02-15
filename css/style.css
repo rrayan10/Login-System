@@ -1,0 +1,55 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #708993;
+    background-color: #19183B;
+}
+
+*::selection {
+    color: #19183B;
+    background-color: rgba(182, 65, 65, 0.5)
+}
+
+a {
+    color: #708993;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.centerContent {
+    position: relative;
+}
+
+.signIn-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    border: #19183B 1px solid;
+    box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);
+}
+
+.email,
+.password {
+    border: 1px solid rgba(182, 65, 65, 0.5);
+    background-color: #19183B;
+}
+
+.email:focus,
+.password:focus {
+    background-color: #19183B;
+}
+
+.email::placeholder,
+.password::placeholder {
+    color: #708993;
+}
