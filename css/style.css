@@ -46,6 +46,7 @@ a:hover {
 
 .email:focus,
 .password:focus {
+    color: #708993;
     background-color: #19183B;
 }
 
