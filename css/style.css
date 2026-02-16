@@ -42,6 +42,7 @@ a:hover {
 .password {
     border: 1px solid rgba(182, 65, 65, 0.5);
     background-color: #19183B;
+    color: #708993;
 }
 
 .email:focus,
