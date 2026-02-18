@@ -50,3 +50,13 @@ a:hover {
 .password::placeholder {
     color: #708993;
 }
+
+.success {
+    color: rgb(36, 216, 30);
+}
+
+.alreadyExists,
+.invalid,
+.incorrect {
+    color: rgb(182, 65, 65);
+}
