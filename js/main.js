@@ -4,12 +4,23 @@ var userEmail = document.querySelector('.email');
 var userPassword = document.querySelector('.password');
 var allInpts = document.querySelectorAll('.allInpts')
 var signUpBtn = document.querySelector('.signUpBtn');
-var users = [];
+var success = document.querySelector('.success');
+var alreadyExists = document.querySelector('.alreadyExists');
+var users = [JSON.parse(localStorage.getItem('data'))];
 var regex = {
     u_name: /^[a-zA-z]{3,20}$/,
     u_email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     u_password: /^.{8,}$/
 };
+
+
+if (JSON.parse(localStorage.getItem('data'))) {
+    var oldData = JSON.parse(localStorage.getItem('data'));
+    users.push(oldData);
+}
+else {
+    users = [];
+}
 
 
 // Save User Data
@@ -21,9 +32,10 @@ function saveUserData() {
             u_password: userPassword.value
         }
 
-        localStorage.setItem('userData', JSON.stringify(userData));
         users.push(userData);
         clearInputs();
+        success.classList.remove('d-none');
+        localStorage.setItem('data', JSON.stringify(users));
     }
 };
 
@@ -83,5 +95,3 @@ for (var i = 0; i < allInpts.length; i++) {
         }
     });
 };
-
-
