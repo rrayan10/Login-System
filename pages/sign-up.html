@@ -16,19 +16,19 @@
         <h1 class="text-center mt-4 mb-4">Login System</h1>
         <div class="input-group flex-nowrap w-75 m-auto mb-3">
             <input type="text" class="form-control name" placeholder="Enter your name" aria-label="Name"
-                aria-describedby="addon-wrapping">
+                aria-describedby="addon-wrapping" id="u_name" oninput="validateUserName(this)">
         </div>
         <div class="input-group flex-nowrap w-75 m-auto mb-3">
             <input type="email" class="form-control email" placeholder="Enter your email" aria-label="Email"
-                aria-describedby="addon-wrapping">
+                aria-describedby="addon-wrapping" id="u_email" oninput="validateUserEmail(this)">
         </div>
         <div class="input-group flex-nowrap w-75 m-auto mb-3">
             <input type="password" class="form-control password" placeholder="Enter your password" aria-label="Password"
-                aria-describedby="addon-wrapping">
+                aria-describedby="addon-wrapping" id="u_password" oninput="validateUserPassword(this)">
         </div>
         <p class="text-center mb-3 fw-medium fs-5 success d-none">Success</p>
         <p class="text-center mb-3 fw-medium fs-5 alreadyExists d-none">Email already exists</p>
-        <p class="text-center mb-3 fw-medium fs-5 invalid d-none">Invalid email or password</p>
+        <p class="text-center mb-3 fw-medium fs-5 invalid d-none">Invalid name or email or password</p>
         <div class="text-center">
             <button type="button" class="btn btn-outline-info w-75 m-auto mb-3 fw-medium signUpBtn">Sign Up</button>
         </div>
