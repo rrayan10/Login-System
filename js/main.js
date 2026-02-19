@@ -2,6 +2,7 @@
 var userName = document.querySelector('.name');
 var userEmail = document.querySelector('.email');
 var userPassword = document.querySelector('.password');
+var allInpts = document.querySelectorAll('.allInpts')
 var signUpBtn = document.querySelector('.signUpBtn');
 var users = [];
 var regex = {
@@ -13,7 +14,7 @@ var regex = {
 
 // Save User Data
 function saveUserData() {
-    if (validateUserName && validateUserEmail && validateUserPassword) {
+    if (userName.classList.contains('is-valid') && userEmail.classList.contains('is-valid') && userPassword.classList.contains('is-valid')) {
         var userData = {
             u_name: userName.value,
             u_email: userEmail.value,
@@ -45,35 +46,42 @@ signUpBtn.addEventListener('click', function () {
 
 
 // Sign Up Validation
-function validateUserName(inputsValue) {
-    if (regex.u_name.test(inputsValue.value)) {
-        userName.classList.remove('is-invalid');
-        userName.classList.add('is-valid');
-    }
-    else {
-        userName.classList.remove('is-valid');
-        userName.classList.add('is-invalid');
-    }
+for (var i = 0; i < allInpts.length; i++) {
+    allInpts[i].addEventListener('input', function (e) {
+        var currentInput = e.target;
+        var currentInputId = e.target.id;
+
+        if (currentInputId == 'u_name') {
+            if (regex.u_name.test(currentInput.value)) {
+                currentInput.classList.remove('is-invalid');
+                currentInput.classList.add('is-valid');
+            }
+            else {
+                currentInput.classList.remove('is-valid');
+                currentInput.classList.add('is-invalid');
+            };
+        }
+        else if (currentInputId == 'u_email') {
+            if (regex.u_email.test(currentInput.value)) {
+                currentInput.classList.remove('is-invalid');
+                currentInput.classList.add('is-valid');
+            }
+            else {
+                currentInput.classList.remove('is-valid');
+                currentInput.classList.add('is-invalid');
+            };
+        }
+        else if (currentInputId == 'u_password') {
+            if (regex.u_password.test(currentInput.value)) {
+                currentInput.classList.remove('is-invalid');
+                currentInput.classList.add('is-valid');
+            }
+            else {
+                currentInput.classList.remove('is-valid');
+                currentInput.classList.add('is-invalid');
+            };
+        }
+    });
 };
 
-function validateUserEmail(inputsValue) {
-    if (regex.u_email.test(inputsValue.value)) {
-        userEmail.classList.remove('is-invalid');
-        userEmail.classList.add('is-valid');
-    }
-    else {
-        userEmail.classList.remove('is-valid');
-        userEmail.classList.add('is-invalid');
-    }
-};
 
-function validateUserPassword(inputsValue) {
-    if (regex.u_password.test(inputsValue.value)) {
-        userPassword.classList.remove('is-invalid');
-        userPassword.classList.add('is-valid');
-    }
-    else {
-        userPassword.classList.remove('is-valid');
-        userPassword.classList.add('is-invalid');
-    }
-};
