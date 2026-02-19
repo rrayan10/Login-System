@@ -6,7 +6,7 @@ var allInpts = document.querySelectorAll('.allInpts')
 var signUpBtn = document.querySelector('.signUpBtn');
 var success = document.querySelector('.success');
 var alreadyExists = document.querySelector('.alreadyExists');
-var users = [JSON.parse(localStorage.getItem('data'))];
+var users = [];
 var regex = {
     u_name: /^[a-zA-z]{3,20}$/,
     u_email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -14,12 +14,8 @@ var regex = {
 };
 
 
-if (JSON.parse(localStorage.getItem('data'))) {
-    var oldData = JSON.parse(localStorage.getItem('data'));
-    users.push(oldData);
-}
-else {
-    users = [];
+if (localStorage.getItem('data')) {
+    users = JSON.parse(localStorage.getItem('data'));
 }
 
 
@@ -33,9 +29,10 @@ function saveUserData() {
         }
 
         users.push(userData);
+        localStorage.setItem('data', JSON.stringify(users));
+
         clearInputs();
         success.classList.remove('d-none');
-        localStorage.setItem('data', JSON.stringify(users));
     }
 };
 
