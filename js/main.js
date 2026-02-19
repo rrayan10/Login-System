@@ -6,6 +6,8 @@ var allInpts = document.querySelectorAll('.allInpts');
 var signUpBtn = document.querySelector('.signUpBtn');
 var success = document.querySelector('.success');
 var alreadyExists = document.querySelector('.alreadyExists');
+var invalid = document.querySelector('.invalid');
+var signForm = document.querySelector('.sign-form');
 var users = [];
 var regex = {
     u_name: /^[a-zA-z]{3,20}$/,
@@ -29,8 +31,9 @@ function saveUserData() {
 
             if (userEmail.value === oldEmail) {
                 yes++;
-                success.classList.add('d-none');
                 alreadyExists.classList.remove('d-none');
+                success.classList.add('d-none');
+                invalid.classList.add('d-none');
                 break;
             }
         }
@@ -47,8 +50,15 @@ function saveUserData() {
 
             clearInputs();
             success.classList.remove('d-none');
+            invalid.classList.add('d-none');
             alreadyExists.classList.add('d-none');
+            signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(37, 216, 30, 0.5);`
         }
+    }
+    else if (userName.classList.contains('is-invalid') || userEmail.classList.contains('is-invalid') || userPassword.classList.contains('is-invalid')) {
+        invalid.classList.remove('d-none');
+        success.classList.add('d-none');
+        alreadyExists.classList.add('d-none');
     }
 };
 
