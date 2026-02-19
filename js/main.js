@@ -2,7 +2,7 @@
 var userName = document.querySelector('.name');
 var userEmail = document.querySelector('.email');
 var userPassword = document.querySelector('.password');
-var allInpts = document.querySelectorAll('.allInpts')
+var allInpts = document.querySelectorAll('.allInpts');
 var signUpBtn = document.querySelector('.signUpBtn');
 var success = document.querySelector('.success');
 var alreadyExists = document.querySelector('.alreadyExists');
@@ -21,18 +21,34 @@ if (localStorage.getItem('data')) {
 
 // Save User Data
 function saveUserData() {
+    var yes = 0;
+
     if (userName.classList.contains('is-valid') && userEmail.classList.contains('is-valid') && userPassword.classList.contains('is-valid')) {
-        var userData = {
-            u_name: userName.value,
-            u_email: userEmail.value,
-            u_password: userPassword.value
+        for (var i = 0; i < users.length; i++) {
+            var oldEmail = users[i].u_email;
+
+            if (userEmail.value === oldEmail) {
+                yes++;
+                success.classList.add('d-none');
+                alreadyExists.classList.remove('d-none');
+                break;
+            }
         }
 
-        users.push(userData);
-        localStorage.setItem('data', JSON.stringify(users));
+        if (yes === 0) {
+            var userData = {
+                u_name: userName.value,
+                u_email: userEmail.value,
+                u_password: userPassword.value
+            }
 
-        clearInputs();
-        success.classList.remove('d-none');
+            users.push(userData);
+            localStorage.setItem('data', JSON.stringify(users));
+
+            clearInputs();
+            success.classList.remove('d-none');
+            alreadyExists.classList.add('d-none');
+        }
     }
 };
 
