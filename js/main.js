@@ -34,6 +34,8 @@ function saveUserData() {
                 alreadyExists.classList.remove('d-none');
                 success.classList.add('d-none');
                 invalid.classList.add('d-none');
+                userEmail.classList.add('is-invalid');
+                signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
                 break;
             }
         }
@@ -59,6 +61,7 @@ function saveUserData() {
         invalid.classList.remove('d-none');
         success.classList.add('d-none');
         alreadyExists.classList.add('d-none');
+        signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
     }
 };
 
