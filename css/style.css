@@ -25,14 +25,17 @@ a:hover {
     text-decoration: underline;
 }
 
-.sign-form {
+.sign-form,
+.login-form {
     border: #708993 1px solid;
     box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);
 }
 
 .name,
 .email,
-.password {
+.password,
+.loginEmail,
+.loginPassword {
     border: 1px solid #708993;
     background-color: #19183B;
     color: #708993;
@@ -40,14 +43,18 @@ a:hover {
 
 .name:focus,
 .email:focus,
-.password:focus {
+.password:focus,
+.loginEmail:focus,
+.loginPassword:focus {
     color: #708993;
     background-color: #19183B;
 }
 
 .name::placeholder,
 .email::placeholder,
-.password::placeholder {
+.password::placeholder,
+.loginEmail::placeholder,
+.loginPassword::placeholder {
     color: #708993;
 }
 
