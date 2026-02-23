@@ -10,8 +10,6 @@ var invalidName = document.querySelector('.invalidName');
 var invalidEmail = document.querySelector('.invalidEmail');
 var invalidPassword = document.querySelector('.invalidPassword');
 var signForm = document.querySelector('.sign-form');
-var loginEmail = document.querySelector('.loginEmail');
-var loginPassword = document.querySelector('.loginPassword');
 var users = [];
 
 
