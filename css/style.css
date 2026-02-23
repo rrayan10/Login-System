@@ -56,7 +56,9 @@ a:hover {
 }
 
 .alreadyExists,
-.invalid,
+.invalidName,
+.invalidEmail,
+.invalidPassword,
 .incorrect {
     color: rgb(182, 65, 65);
 }

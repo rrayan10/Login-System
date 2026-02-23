@@ -6,9 +6,14 @@ var allInpts = document.querySelectorAll('.allInpts');
 var signUpBtn = document.querySelector('.signUpBtn');
 var success = document.querySelector('.success');
 var alreadyExists = document.querySelector('.alreadyExists');
-var invalid = document.querySelector('.invalid');
+var invalidName = document.querySelector('.invalidName');
+var invalidEmail = document.querySelector('.invalidEmail');
+var invalidPassword = document.querySelector('.invalidPassword');
 var signForm = document.querySelector('.sign-form');
 var users = [];
+
+
+// Validation (Regex)
 var regex = {
     u_name: /^[a-zA-z]{3,20}$/,
     u_email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -33,7 +38,9 @@ function saveUserData() {
                 yes++;
                 alreadyExists.classList.remove('d-none');
                 success.classList.add('d-none');
-                invalid.classList.add('d-none');
+                invalidName.classList.add('d-none');
+                invalidEmail.classList.add('d-none');
+                invalidPassword.classList.add('d-none');
                 userEmail.classList.add('is-invalid');
                 signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
                 break;
@@ -52,13 +59,33 @@ function saveUserData() {
 
             clearInputs();
             success.classList.remove('d-none');
-            invalid.classList.add('d-none');
+            invalidName.classList.add('d-none');
+            invalidEmail.classList.add('d-none');
+            invalidPassword.classList.add('d-none');
             alreadyExists.classList.add('d-none');
             signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(37, 216, 30, 0.5);`
         }
     }
-    else if (userName.classList.contains('is-invalid') || userEmail.classList.contains('is-invalid') || userPassword.classList.contains('is-invalid')) {
-        invalid.classList.remove('d-none');
+    else if (userName.classList.contains('is-invalid')) {
+        invalidName.classList.remove('d-none');
+        invalidEmail.classList.add('d-none');
+        invalidPassword.classList.add('d-none');
+        success.classList.add('d-none');
+        alreadyExists.classList.add('d-none');
+        signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
+    }
+    else if (userEmail.classList.contains('is-invalid')) {
+        invalidEmail.classList.remove('d-none');
+        invalidName.classList.add('d-none');
+        invalidPassword.classList.add('d-none');
+        success.classList.add('d-none');
+        alreadyExists.classList.add('d-none');
+        signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
+    }
+    else if (userPassword.classList.contains('is-invalid')) {
+        invalidPassword.classList.remove('d-none');
+        invalidName.classList.add('d-none');
+        invalidEmail.classList.add('d-none');
         success.classList.add('d-none');
         alreadyExists.classList.add('d-none');
         signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
