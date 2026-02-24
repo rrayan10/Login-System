@@ -67,6 +67,7 @@ a:hover {
 .invalidEmail,
 .invalidPassword,
 .incorrectEmail,
-.incorrectPassword {
+.incorrectPassword,
+.emailNotRegistered {
     color: rgb(182, 65, 65);
 }
