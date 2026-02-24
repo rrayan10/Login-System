@@ -1,4 +1,4 @@
-// DOM
+// DOM.
 var loginEmail = document.querySelector('.loginEmail');
 var loginPassword = document.querySelector('.loginPassword');
 var loginInBtn = document.querySelector('.loginInBtn');
@@ -8,16 +8,15 @@ var incorrectEmail = document.querySelector('.incorrectEmail');
 var incorrectPassword = document.querySelector('.incorrectPassword');
 var emailNotRegistered = document.querySelector('.emailNotRegistered');
 var users = JSON.parse(localStorage.getItem('data'));
+// Validation (Regex).
 var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-console.log(users.length);
 
 
 // Sign In Action!
 loginInBtn.addEventListener('click', function () {
     var yes = 0;
 
+    // Email Validation Check.
     if (emailRegex.test(loginEmail.value)) {
         loginEmail.classList.remove('is-invalid');
         incorrectEmail.classList.add('d-none');
@@ -25,6 +24,7 @@ loginInBtn.addEventListener('click', function () {
         for (var i = 0; i < users.length; i++) {
             if (users[i].u_email == loginEmail.value) {
                 yes++;
+                // Success.
                 if (users[i].u_password == loginPassword.value) {
                     clearInputs();
                     success.classList.remove('d-none');
@@ -35,6 +35,7 @@ loginInBtn.addEventListener('click', function () {
                     loginPassword.classList.remove('is-invalid');
                     loginForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(37, 216, 30, 0.5);`
                 }
+                // Incorrect password.
                 else {
                     success.classList.add('d-none');
                     incorrectEmail.classList.add('d-none');
@@ -70,7 +71,8 @@ loginInBtn.addEventListener('click', function () {
     }
 });
 
-// Clear Inputs
+
+// Clear Inputs.
 function clearInputs() {
     loginEmail.value = '';
     loginPassword.value = '';
