@@ -8,6 +8,8 @@ var incorrectEmail = document.querySelector('.incorrectEmail');
 var incorrectPassword = document.querySelector('.incorrectPassword');
 var emailNotRegistered = document.querySelector('.emailNotRegistered');
 var users = JSON.parse(localStorage.getItem('data'));
+
+
 // Email Validation (Regex).
 var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

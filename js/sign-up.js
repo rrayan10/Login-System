@@ -1,15 +1,15 @@
 // DOM.
-var userName = document.querySelector('.name');
-var userEmail = document.querySelector('.email');
-var userPassword = document.querySelector('.password');
-var allInpts = document.querySelectorAll('.allInpts');
-var signUpBtn = document.querySelector('.signUpBtn');
+var signUpForm = document.querySelector('.signUp-form');
+var nameInput = document.querySelector('.name-input');
+var emailInput = document.querySelector('.email-input');
+var passwordInput = document.querySelector('.password-input');
+var allInputs = document.querySelectorAll('.allInputs');
+var signUpBtn = document.querySelector('.signUp-btn');
 var success = document.querySelector('.success');
-var alreadyExists = document.querySelector('.alreadyExists');
 var invalidName = document.querySelector('.invalidName');
 var invalidEmail = document.querySelector('.invalidEmail');
 var invalidPassword = document.querySelector('.invalidPassword');
-var signForm = document.querySelector('.sign-form');
+var alreadyExists = document.querySelector('.alreadyExists');
 var users = [];
 
 
@@ -27,24 +27,24 @@ if (localStorage.getItem('data')) {
 }
 
 
-// Save User Data.
-function saveUserData() {
+// Sign Up Action!
+signUpBtn.addEventListener('click', function () {
     var yes = 0;
 
     // Inputs Validation Check.
-    if (userName.classList.contains('is-valid') && userEmail.classList.contains('is-valid') && userPassword.classList.contains('is-valid')) {
+    if (nameInput.classList.contains('is-valid') && emailInput.classList.contains('is-valid') && passwordInput.classList.contains('is-valid')) {
         for (var i = 0; i < users.length; i++) {
             // Email already exists.
             var oldEmail = users[i].u_email;
-            if (userEmail.value === oldEmail) {
+            if (emailInput.value === oldEmail) {
                 yes++;
-                alreadyExists.classList.remove('d-none');
                 success.classList.add('d-none');
                 invalidName.classList.add('d-none');
                 invalidEmail.classList.add('d-none');
                 invalidPassword.classList.add('d-none');
-                userEmail.classList.add('is-invalid');
-                signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
+                alreadyExists.classList.remove('d-none');
+                emailInput.classList.add('is-invalid');
+                signUpForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
                 break;
             }
         }
@@ -52,9 +52,9 @@ function saveUserData() {
         // Success.
         if (yes === 0) {
             var userData = {
-                u_name: userName.value,
-                u_email: userEmail.value,
-                u_password: userPassword.value
+                u_name: nameInput.value,
+                u_email: emailInput.value,
+                u_password: passwordInput.value
             }
 
             users.push(userData);
@@ -66,56 +66,41 @@ function saveUserData() {
             invalidEmail.classList.add('d-none');
             invalidPassword.classList.add('d-none');
             alreadyExists.classList.add('d-none');
-            signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(37, 216, 30, 0.5);`
+            signUpForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(37, 216, 30, 0.5);`
         }
-    } // don't forgt to edit this "invalid" validation.
-    else if (userName.classList.contains('is-invalid')) {
+
+    }
+    // Have to handle this "invalid" validation.
+    else if (nameInput.classList.contains('is-invalid')) {
+        success.classList.add('d-none');
         invalidName.classList.remove('d-none');
         invalidEmail.classList.add('d-none');
         invalidPassword.classList.add('d-none');
-        success.classList.add('d-none');
         alreadyExists.classList.add('d-none');
-        signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
+        signUpForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
     }
-    else if (userEmail.classList.contains('is-invalid')) {
-        invalidEmail.classList.remove('d-none');
+    else if (emailInput.classList.contains('is-invalid')) {
+        success.classList.add('d-none');
         invalidName.classList.add('d-none');
+        invalidEmail.classList.remove('d-none');
         invalidPassword.classList.add('d-none');
-        success.classList.add('d-none');
         alreadyExists.classList.add('d-none');
-        signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
+        signUpForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
     }
-    else if (userPassword.classList.contains('is-invalid')) {
-        invalidPassword.classList.remove('d-none');
+    else if (passwordInput.classList.contains('is-invalid')) {
+        success.classList.add('d-none');
         invalidName.classList.add('d-none');
         invalidEmail.classList.add('d-none');
-        success.classList.add('d-none');
+        invalidPassword.classList.remove('d-none');
         alreadyExists.classList.add('d-none');
-        signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
+        signUpForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
     }
-};
-
-
-// Clear Inputs.
-function clearInputs() {
-    userName.value = '';
-    userEmail.value = '';
-    userPassword.value = '';
-    userName.classList.remove('is-valid');
-    userEmail.classList.remove('is-valid');
-    userPassword.classList.remove('is-valid');
-}
-
-
-// Sign Up Action!
-signUpBtn.addEventListener('click', function () {
-    saveUserData();
 });
 
 
 // Sign Up Validation.
-for (var i = 0; i < allInpts.length; i++) {
-    allInpts[i].addEventListener('input', function (e) {
+for (var i = 0; i < allInputs.length; i++) {
+    allInputs[i].addEventListener('input', function (e) {
         var currentInput = e.target;
         var currentInputId = e.target.id;
 
@@ -151,3 +136,14 @@ for (var i = 0; i < allInpts.length; i++) {
         }
     });
 };
+
+
+// Clear Inputs.
+function clearInputs() {
+    nameInput.value = '';
+    emailInput.value = '';
+    passwordInput.value = '';
+    nameInput.classList.remove('is-valid');
+    emailInput.classList.remove('is-valid');
+    passwordInput.classList.remove('is-valid');
+}

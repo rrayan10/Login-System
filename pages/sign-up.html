@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/sign-up.css" />
+</head>
+
+<body>
+
+    <div class="signUp-form w-75 m-auto mt-5">
+        <h1 class="text-center mt-4 mb-4">Login System</h1>
+        <div class="input-group flex-nowrap w-75 m-auto mb-3">
+            <input type="text" class="name-input allInputs form-control" placeholder="Enter your name" aria-label="Name"
+                aria-describedby="addon-wrapping" id="u_name">
+        </div>
+        <div class="input-group flex-nowrap w-75 m-auto mb-3">
+            <input type="email" class="email-input allInputs form-control" placeholder="Enter your email"
+                aria-label="Email" aria-describedby="addon-wrapping" id="u_email">
+        </div>
+        <div class="input-group flex-nowrap w-75 m-auto mb-3">
+            <input type="password" class="password-input allInputs form-control" placeholder="Enter your password"
+                aria-label="Password" aria-describedby="addon-wrapping" id="u_password">
+        </div>
+        <p class="text-center mb-3 fw-medium fs-5 d-none success">Success</p>
+        <p class="text-center mb-3 fw-medium fs-5 d-none invalidName">Invalid name</p>
+        <p class="text-center mb-3 fw-medium fs-5 d-none invalidEmail">Invalid email</p>
+        <p class="text-center mb-3 fw-medium fs-5 d-none invalidPassword">Invalid password</p>
+        <p class="text-center mb-3 fw-medium fs-5 d-none alreadyExists">Email already exists</p>
+        <div class="text-center">
+            <button type="button" class="signUp-btn btn btn-outline-info w-75 m-auto mb-3 fw-medium">Sign Up</button>
+        </div>
+        <p class="text-center mb-5 fw-medium">
+            You have an account? <a href="../index.html">Sign In</a>
+        </p>
+    </div>
+
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/sign-up.js"></script>
+</body>
+
+</html>
