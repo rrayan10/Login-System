@@ -7,7 +7,6 @@
     <title>Login System</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/media.css" />
 </head>
 
 <body>
@@ -15,19 +14,19 @@
     <div class="login-form w-75 m-auto mt-5">
         <h1 class="text-center mt-4 mb-4">Login System</h1>
         <div class="input-group flex-nowrap w-75 m-auto mb-3">
-            <input type="email" class="form-control loginEmail" placeholder="Enter your email" aria-label="Email"
+            <input type="email" class="email-input form-control" placeholder="Enter your email" aria-label="Email"
                 aria-describedby="addon-wrapping">
         </div>
         <div class="input-group flex-nowrap w-75 m-auto mb-3">
-            <input type="password" class="form-control loginPassword" placeholder="Enter your password"
+            <input type="password" class="password-input form-control" placeholder="Enter your password"
                 aria-label="Password" aria-describedby="addon-wrapping">
         </div>
-        <p class="text-center mb-3 fw-medium fs-5 success d-none">Success</p>
-        <p class="text-center mb-3 fw-medium fs-5 incorrectEmail d-none">Incorrect email</p>
-        <p class="text-center mb-3 fw-medium fs-5 incorrectPassword d-none">Incorrect password</p>
-        <p class="text-center mb-3 fw-medium fs-5 emailNotRegistered d-none">Email is not registered, Please sign up first</p>
+        <p class="text-center mb-3 fw-medium fs-5 d-none success">Success</p>
+        <p class="text-center mb-3 fw-medium fs-5 d-none incorrectEmail">Incorrect email</p>
+        <p class="text-center mb-3 fw-medium fs-5 d-none incorrectPassword">Incorrect password</p>
+        <p class="text-center mb-3 fw-medium fs-5 d-none emailNotRegistered">Email is not registered, Please sign up first</p>
         <div class="text-center">
-            <button type="button" class="btn btn-outline-info w-75 m-auto mb-3 fw-medium loginInBtn">Login</button>
+            <button type="button" class="login-btn btn btn-outline-info w-75 m-auto mb-3 fw-medium">Login</button>
         </div>
         <p class="text-center mb-5 fw-medium">
             Don’t have an account? <a href="./pages/sign-up.html">Sign Up</a>
@@ -35,7 +34,7 @@
     </div>
 
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="./js/sign-in.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>

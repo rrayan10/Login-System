@@ -1,153 +1,86 @@
 // DOM.
-var userName = document.querySelector('.name');
-var userEmail = document.querySelector('.email');
-var userPassword = document.querySelector('.password');
-var allInpts = document.querySelectorAll('.allInpts');
-var signUpBtn = document.querySelector('.signUpBtn');
+var loginForm = document.querySelector('.login-form');
+var emailInput = document.querySelector('.email-input');
+var passwordInput = document.querySelector('.password-input');
+var loginBtn = document.querySelector('.login-btn');
 var success = document.querySelector('.success');
-var alreadyExists = document.querySelector('.alreadyExists');
-var invalidName = document.querySelector('.invalidName');
-var invalidEmail = document.querySelector('.invalidEmail');
-var invalidPassword = document.querySelector('.invalidPassword');
-var signForm = document.querySelector('.sign-form');
-var users = [];
+var incorrectEmail = document.querySelector('.incorrectEmail');
+var incorrectPassword = document.querySelector('.incorrectPassword');
+var emailNotRegistered = document.querySelector('.emailNotRegistered');
+var users = JSON.parse(localStorage.getItem('data'));
+// Email Validation (Regex).
+var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
-// Validation (Regex).
-var regex = {
-    u_name: /^[a-zA-z]{3,20}$/,
-    u_email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    u_password: /^.{8,}$/
-};
-
-
-// localStorage Check.
-if (localStorage.getItem('data')) {
-    users = JSON.parse(localStorage.getItem('data'));
-}
-
-
-// Save User Data.
-function saveUserData() {
+// Sign In Action!
+loginBtn.addEventListener('click', function (e) {
     var yes = 0;
 
-    // Inputs Validation Check.
-    if (userName.classList.contains('is-valid') && userEmail.classList.contains('is-valid') && userPassword.classList.contains('is-valid')) {
+    if (emailInput.value == '' && passwordInput.value == '') {
+        // Have to handle this.
+        console.log('All inputs is required');
+    }
+    // Email Validation Check.
+    else if (emailRegex.test(emailInput.value)) {
+        emailInput.classList.remove('is-invalid');
+        incorrectEmail.classList.add('d-none');
+
         for (var i = 0; i < users.length; i++) {
-            // Email already exists.
-            var oldEmail = users[i].u_email;
-            if (userEmail.value === oldEmail) {
+            if (users[i].u_email == emailInput.value) {
                 yes++;
-                alreadyExists.classList.remove('d-none');
-                success.classList.add('d-none');
-                invalidName.classList.add('d-none');
-                invalidEmail.classList.add('d-none');
-                invalidPassword.classList.add('d-none');
-                userEmail.classList.add('is-invalid');
-                signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
-                break;
+                // Success.
+                if (users[i].u_password == passwordInput.value) {
+                    clearInputs();
+                    success.classList.remove('d-none');
+                    incorrectEmail.classList.add('d-none');
+                    incorrectPassword.classList.add('d-none');
+                    emailNotRegistered.classList.add('d-none');
+                    emailInput.classList.remove('is-invalid');
+                    passwordInput.classList.remove('is-invalid');
+                    loginForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(37, 216, 30, 0.5);`
+                    // Go to Welcome Page.
+                    document.location.href = "./pages/welcome.html";
+                }
+                // Incorrect password.
+                else {
+                    success.classList.add('d-none');
+                    incorrectEmail.classList.add('d-none');
+                    incorrectPassword.classList.remove('d-none');
+                    emailNotRegistered.classList.add('d-none');
+                    emailInput.classList.remove('is-invalid');
+                    passwordInput.classList.add('is-invalid');
+                    loginForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
+                }
             }
         }
 
-        // Success.
-        if (yes === 0) {
-            var userData = {
-                u_name: userName.value,
-                u_email: userEmail.value,
-                u_password: userPassword.value
-            }
-
-            users.push(userData);
-            localStorage.setItem('data', JSON.stringify(users));
-
-            clearInputs();
-            success.classList.remove('d-none');
-            invalidName.classList.add('d-none');
-            invalidEmail.classList.add('d-none');
-            invalidPassword.classList.add('d-none');
-            alreadyExists.classList.add('d-none');
-            signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(37, 216, 30, 0.5);`
+        // Email is not registered.
+        if (yes == 0) {
+            success.classList.add('d-none');
+            incorrectEmail.classList.add('d-none');
+            incorrectPassword.classList.add('d-none');
+            emailNotRegistered.classList.remove('d-none');
+            emailInput.classList.add('is-invalid');
+            passwordInput.classList.remove('is-invalid');
+            loginForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
         }
-    } // don't forgt to edit this "invalid" validation.
-    else if (userName.classList.contains('is-invalid')) {
-        invalidName.classList.remove('d-none');
-        invalidEmail.classList.add('d-none');
-        invalidPassword.classList.add('d-none');
-        success.classList.add('d-none');
-        alreadyExists.classList.add('d-none');
-        signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
+
     }
-    else if (userEmail.classList.contains('is-invalid')) {
-        invalidEmail.classList.remove('d-none');
-        invalidName.classList.add('d-none');
-        invalidPassword.classList.add('d-none');
+    // Incorrect email.
+    else {
         success.classList.add('d-none');
-        alreadyExists.classList.add('d-none');
-        signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
+        incorrectEmail.classList.remove('d-none');
+        incorrectPassword.classList.add('d-none');
+        emailNotRegistered.classList.add('d-none');
+        emailInput.classList.add('is-invalid');
+        passwordInput.classList.remove('is-invalid');
+        loginForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
     }
-    else if (userPassword.classList.contains('is-invalid')) {
-        invalidPassword.classList.remove('d-none');
-        invalidName.classList.add('d-none');
-        invalidEmail.classList.add('d-none');
-        success.classList.add('d-none');
-        alreadyExists.classList.add('d-none');
-        signForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(182, 65, 65, 0.5);`
-    }
-};
+});
 
 
 // Clear Inputs.
 function clearInputs() {
-    userName.value = '';
-    userEmail.value = '';
-    userPassword.value = '';
-    userName.classList.remove('is-valid');
-    userEmail.classList.remove('is-valid');
-    userPassword.classList.remove('is-valid');
+    emailInput.value = '';
+    passwordInput.value = '';
 }
-
-
-// Sign Up Action!
-signUpBtn.addEventListener('click', function () {
-    saveUserData();
-});
-
-
-// Sign Up Validation.
-for (var i = 0; i < allInpts.length; i++) {
-    allInpts[i].addEventListener('input', function (e) {
-        var currentInput = e.target;
-        var currentInputId = e.target.id;
-
-        if (currentInputId == 'u_name') {
-            if (regex.u_name.test(currentInput.value)) {
-                currentInput.classList.remove('is-invalid');
-                currentInput.classList.add('is-valid');
-            }
-            else {
-                currentInput.classList.remove('is-valid');
-                currentInput.classList.add('is-invalid');
-            };
-        }
-        else if (currentInputId == 'u_email') {
-            if (regex.u_email.test(currentInput.value)) {
-                currentInput.classList.remove('is-invalid');
-                currentInput.classList.add('is-valid');
-            }
-            else {
-                currentInput.classList.remove('is-valid');
-                currentInput.classList.add('is-invalid');
-            };
-        }
-        else if (currentInputId == 'u_password') {
-            if (regex.u_password.test(currentInput.value)) {
-                currentInput.classList.remove('is-invalid');
-                currentInput.classList.add('is-valid');
-            }
-            else {
-                currentInput.classList.remove('is-valid');
-                currentInput.classList.add('is-invalid');
-            };
-        }
-    });
-};
