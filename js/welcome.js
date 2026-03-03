@@ -1,3 +1,5 @@
-var users = JSON.parse(localStorage.getItem('data'));
+var welcomeUser = document.querySelector('.welcomeUser');
+var currentUser = localStorage.getItem('currentUser');
 
-console.log(users);
+// Welcome User!
+welcomeUser.textContent = `Welcome ${currentUser}!`
