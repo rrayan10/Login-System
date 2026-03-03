@@ -40,6 +40,10 @@ loginBtn.addEventListener('click', function (e) {
                     emailInput.classList.remove('is-invalid');
                     passwordInput.classList.remove('is-invalid');
                     loginForm.style.cssText = `box-shadow: -5px 10px 100px 10px rgba(37, 216, 30, 0.5);`
+
+                    var currentUser = '';
+                    currentUser = users[i].u_name;
+                    localStorage.setItem('currentUser', currentUser);
                     // Go to Welcome Page.
                     document.location.href = "./pages/welcome.html";
                 }
