@@ -8,7 +8,7 @@ var currentUser = localStorage.getItem('currentUser');
 welcomeUser.textContent = `Welcome ${currentUser}!`
 
 
-// Logout.
+// Logout Action.
 logoutBtn.addEventListener('click', function() {
     document.location.href = "../index.html";
 });
