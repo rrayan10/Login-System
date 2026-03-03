@@ -45,7 +45,7 @@ loginBtn.addEventListener('click', function (e) {
                     currentUser = users[i].u_name;
                     localStorage.setItem('currentUser', currentUser);
                     // Go to Welcome Page.
-                    document.location.href = "./pages/welcome.html";
+                    window.location.replace("./pages/welcome.html");
                 }
                 // Incorrect password.
                 else {

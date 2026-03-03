@@ -10,5 +10,5 @@ welcomeUser.textContent = `Welcome ${currentUser}!`
 
 // Logout Action.
 logoutBtn.addEventListener('click', function() {
-    document.location.href = "../index.html";
+    window.location.replace("../index.html");
 });
