@@ -18,12 +18,8 @@ var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 loginBtn.addEventListener('click', function (e) {
     var yes = 0;
 
-    if (emailInput.value == '' && passwordInput.value == '') {
-        // Have to handle this.
-        console.log('All inputs is required');
-    }
     // Email Validation Check.
-    else if (emailRegex.test(emailInput.value)) {
+    if (emailRegex.test(emailInput.value)) {
         emailInput.classList.remove('is-invalid');
         incorrectEmail.classList.add('d-none');
 

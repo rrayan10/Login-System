@@ -5,7 +5,7 @@ var currentUser = localStorage.getItem('currentUser');
 
 
 // Welcome User!
-welcomeUser.textContent = `Welcome ${currentUser}!`
+welcomeUser.textContent = `Welcome ${currentUser}!`;
 
 
 // Logout Action.

@@ -70,7 +70,7 @@ signUpBtn.addEventListener('click', function () {
         }
 
     }
-    // Have to handle this "invalid" validation.
+    // Invalid name or email or password.
     else if (nameInput.classList.contains('is-invalid')) {
         success.classList.add('d-none');
         invalidName.classList.remove('d-none');
